@@ -7,6 +7,7 @@ import Footer from './Footer/Footer';
 import Product2 from './main/Product2';
 import Upload from './main/Upload';
 import Comunity from './main/Comunity';
+import Cart from './main/Cart';
 import "./scss/custom.scss"; 
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
 					<Route path="/product2/:2" element={<Product2 />}></Route>
 					<Route path="/upload/:3" element={<Upload />}></Route>
 					<Route path="/comunity/:4" element={<Comunity />}></Route>
+					<Route path="/Cart/:5" element={<Cart/>}></Route>
 				</Routes>
 				<Footer />
 			</BrowserRouter>

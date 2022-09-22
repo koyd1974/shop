@@ -3,15 +3,18 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Card }  from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
+import bg from "./bg.jpg";
 
 const Main = (props) => {
   
    
 	return (
-   
+      <>
+        {/* Main-bg */}
+      <img id='main-bg' className="main-bg" src ={bg}></img>
+    
         <div className="container" >
-          
+     
       <Link to="/product/1">
       <Row xs={1} md={2} className="g-4">  
       {Array.from({ length: 4 }).map((_, idx) => (
@@ -31,6 +34,7 @@ const Main = (props) => {
     </Row>
     </Link>
       </div>
+      </>  
 	);
 };
 

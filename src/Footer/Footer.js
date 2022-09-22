@@ -1,7 +1,5 @@
 import React from 'react';
-// import { Data } from 'react';
 
-// const year = new Data().getFulYear();
 const Footer = () => {
     return (
         <div id="footer">

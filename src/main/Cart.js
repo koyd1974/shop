@@ -4,7 +4,7 @@ import {Table} from 'react-bootstrap'
 function cart(){
     return(
         <div>
-            <Table>
+<Table>
   <thead>
     <tr>
       <th>#</th>
