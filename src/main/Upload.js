@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Divider, Input, InputNumber, Button } from 'antd';
 
+
 const Upload = (props) => {
     return (
         <div id="upload-container" className='inner'>
