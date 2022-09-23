@@ -9,7 +9,7 @@ import Upload from './main/Upload';
 import Comunity from './main/Comunity';
 import Cart from './main/Cart';
 import "./scss/custom.scss"; 
-import './scss/upload.scss';
+
 
 const App = () => {
 	return (

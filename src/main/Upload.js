@@ -1,6 +1,5 @@
-import React from 'react';
 import { Form, Divider, Input, InputNumber, Button } from 'antd';
-
+import '../scss/upload.scss';
 
 const Upload = (props) => {
     return (
