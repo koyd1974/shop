@@ -1,7 +1,10 @@
 import { Form, Divider, Input, InputNumber, Button } from 'antd';
-import '../scss/upload.css';
+import '../scss/upload.scss';
+import 'antd/dist/antd.css';
 
 const Upload = (props) => {
+
+    
     return (
         <div id="upload-container" className='inner'>
             <Form name="productUpload">

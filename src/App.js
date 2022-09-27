@@ -5,7 +5,7 @@ import Main from './main/Main';
 import Product from './main/Product';
 import Footer from './Footer/Footer';
 import Product2 from './main/Product2';
-import Upload from './main/Upload';
+import Upload from './Upload/Upload';
 import Comunity from './main/Comunity';
 import Cart from './main/Cart';
 import "./scss/custom.css"; 
