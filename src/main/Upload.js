@@ -1,5 +1,5 @@
 import { Form, Divider, Input, InputNumber, Button } from 'antd';
-import '../scss/upload.scss';
+import '../scss/upload.css';
 
 const Upload = (props) => {
     return (

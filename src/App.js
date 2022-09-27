@@ -8,7 +8,7 @@ import Product2 from './main/Product2';
 import Upload from './main/Upload';
 import Comunity from './main/Comunity';
 import Cart from './main/Cart';
-import "./scss/custom.scss"; 
+import "./scss/custom.css"; 
 
 
 const App = () => {
