@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import {Table} from 'react-bootstrap'   
 import { useNavigate } from 'react-router-dom';
-import { dbService } from './fbase';
+import { dbService } from '../fbase';
 
 const Comunity = (props) => {
   const navigate = useNavigate()
