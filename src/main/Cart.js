@@ -3,8 +3,8 @@ import {Table} from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
 
 function Cart(props){
-    const state = useSelector((state)=>state);
-    const dispatch = useDispatch();
+    // const state = useSelector((state)=>state);
+    // const dispatch = useDispatch();
 
     return(
         <div>
@@ -18,7 +18,7 @@ function Cart(props){
             <th>변경</th>
           </tr>
         </thead>
-        <tbody>
+        {/* <tbody>
           {
             state.reducer1.map((obj, i) => {
               return (
@@ -47,7 +47,7 @@ function Cart(props){
             })
           }
         
-          </tbody>
+          </tbody> */}
 </Table>
 </div>
     )
