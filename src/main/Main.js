@@ -1,7 +1,10 @@
-import React from 'react';
+
 import bg from "./bg.jpg";
 
+
 const Main = (props) => {
+ 
+   
   
    
 	return (
