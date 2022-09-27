@@ -3,13 +3,12 @@ import {Table} from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
 
 function Cart(props){
-  const state = useSelector((state)=>state);
-  const dispatch = useDispatch();
-  console.log(state)
-  
+    const state = useSelector((state)=>state);
+    const dispatch = useDispatch();
+
     return(
         <div>
-<Table responsive>
+    <Table>
         <thead>
           <tr>
             <th>#</th>
@@ -47,12 +46,7 @@ function Cart(props){
               )
             })
           }
-          {/* <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-          </tr> */}
+        
           </tbody>
 </Table>
 </div>
