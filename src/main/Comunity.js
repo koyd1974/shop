@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {Table} from 'react-bootstrap'   
 import { useNavigate } from 'react-router-dom';
+import { dbService } from '../fbase';
 
 const Comunity = (props) => {
   const navigate = useNavigate()
-
+  
   const onClick = ()=> {
     navigate('/writing')
   }
@@ -22,7 +23,7 @@ const Comunity = (props) => {
             <tbody>
               <tr>
                 <td>1</td>
-                <td>안녕</td>
+                <td></td>
                 <td>안녕</td>
                 <td>안녕</td>
               </tr>
