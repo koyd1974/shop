@@ -12,8 +12,8 @@ const Footer = () => {
             <Col>
                 <p>
                     Copyright &copy; <span>{thisYear()}</span>
-  
                 </p>
+                    
             </Col>
         </Row>
     </div>

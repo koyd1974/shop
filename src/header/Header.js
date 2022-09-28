@@ -1,4 +1,4 @@
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Navbar, Container} from 'react-bootstrap'
 import { UserOutlined, UserAddOutlined } from '@ant-design/icons';
 
