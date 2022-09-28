@@ -1,0 +1,18 @@
+li {
+    list-style-type: none;
+}
+.text-link {
+    color: #000;
+    text-decoration: none;
+    margin-left: 5px;
+}
+.inner ul, h1 {
+    display: flex;
+}
+input {
+    width: 150px;
+}
+#logout {
+    border: none;
+    background-color: #fff;
+}
