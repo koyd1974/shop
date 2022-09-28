@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-// import '../css/Link.css'
+import '../scss/Link.css'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { authService } from '../fbase';
 import { useNavigate } from 'react-router-dom';
