@@ -2,6 +2,7 @@ import { Form, Divider, Input, InputNumber, Button } from 'antd';
 import '../scss/upload.scss';
 import 'antd/dist/antd.css';
 
+
 const Upload = (props) => {
 
     
