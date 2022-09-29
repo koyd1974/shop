@@ -11,7 +11,7 @@ const  Comunity = ({userObj})=> {
         dbService.collection('user').onSnapshot(snapshot => {
             const writeArray = snapshot.docs.map(doc => ({
                 id: doc.id,
-                ...doc.data()
+                ...doc.data() 
             }))
             setWrites(writeArray)
         })

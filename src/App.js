@@ -28,7 +28,7 @@ const App = () => {
               setIsLoggedIn(false)
           }
           setInit(true)
-          console.log(userObj.uid)
+        //   console.log(userObj.uid)
       })
   }, [])
 	return (
