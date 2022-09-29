@@ -1,19 +1,86 @@
-import { Form, Divider, Input, InputNumber, Button } from 'antd';
-import '../scss/upload.scss';
+import React, { useCallback } from 'react'
+//import useInput from '@/hooks/useInput'
+import { Form, Divider, Input, InputNumber, Button, List } from 'antd';
+import '../scss/upload.css';
 import 'antd/dist/antd.css';
-
+import { useState } from 'react';
 
 const Upload = (props) => {
 
+  
+    var file = null
+    
+    const useInput = (initialValue) => {
+        const [value, setValue] = useState(initialValue);
+        const handler = (event) => {
+          setValue(event.target.value);
+        };
+        return [value, handler];
+      }
+
+
+    const [form] = Form.useForm();
+
+
+    const [imgupload, setImgUpload] = useInput('');
+    const [seller, setSeller] = useInput('');
+    const [name, setName] = useInput('');
+    const [price, setPrice] = useInput('')
+    const [description, setDescription] = useInput('')
+  
+
+    
+    const onChangeImage = ((event) => {
+        
+        file = event.target.files[0];
+        console.log("file", file)
+
+    })
+
+
+    const onsubmitForm = useCallback(({ imgUpload, seller , name, price, description }) => {
+       /*
+        const value = {
+            seller: seller,
+            name: name,
+            price: price,
+            description: description   
+          }
+         */
+        var formData = new FormData()
+    
+        
+        formData.append( "seller", seller)
+        formData.append( "name", name)
+        formData.append( "price", price)
+        formData.append( "description", description)
+        formData.append(  "file", file  )
+       
+        
+        for(  let str  of formData ) {
+            console.log( str   )
+        }
+
+        
+      
+
+    })
+ 
+ 
     
     return (
         <div id="upload-container" className='inner'>
-            <Form name="productUpload">
+            
+
+            <Form name="productUpload" onFinish={onsubmitForm} form={form}>
+
+
                 <Form.Item name="imgUpload"
                     label={<div className='upload-label'>상품사진</div>}>
                     <div id="upload-img-placeholder">
                         <img src="images/icons/camera.png" alt="" />
                         <span>이미지를 업로드 해주세요.</span>
+                        <input type={"file"}  onChange={onChangeImage} />
                     </div>
                 </Form.Item>
                 <Divider/>
@@ -49,6 +116,7 @@ const Upload = (props) => {
                     <Button id="submit-button" size="large" htmlType='submit'>
                         상품등록하기
                     </Button>
+                    
                 </Form.Item>
             </Form>
         </div>
