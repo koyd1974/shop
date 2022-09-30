@@ -17,27 +17,18 @@ const Upload = (props) => {
         };
         return [value, handler];
       }
-
-
     const [form] = Form.useForm();
-
-
     const [imgupload, setImgUpload] = useInput('');
     const [seller, setSeller] = useInput('');
     const [name, setName] = useInput('');
     const [price, setPrice] = useInput('')
     const [description, setDescription] = useInput('')
-  
-
-    
+   
     const onChangeImage = ((event) => {
         
         file = event.target.files[0];
         console.log("file", file)
-
     })
-
-
     const onsubmitForm = useCallback(({ imgUpload, seller , name, price, description }) => {
        /*
         const value = {
@@ -54,29 +45,21 @@ const Upload = (props) => {
         formData.append( "name", name)
         formData.append( "price", price)
         formData.append( "description", description)
-        formData.append(  "file", file  )
+        formData.append(  "imgUpload", imgUpload  )
        
         
         for(  let str  of formData ) {
             console.log( str   )
         }
 
-        // 파이어베이스? -> formData 넘겨줌 ->  파이어베이스 응답 ->  응답에 따라 처리(성공/실패) -> 성공 : 상세페이지로 이동 / 메인페이지로 이동 
-        //                                                                                      -> 실패 : 무슨문젠지 알림 
-        
-      
+        // 파이어베이스 -> formData 넘겨줌 ->  파이어베이스 응답 ->  응답에 따라 처리(성공/실패) -> 성공 : 상세페이지로 이동 / 메인페이지로 이동 
+        //                                                                                      -> 실패 : 무슨문젠지 알림            
 
     })
  
- 
-    
     return (
-        <div id="upload-container" className='inner'>
-            
-
-            <Form name="productUpload" onFinish={onsubmitForm} form={form}>
-
-
+        <div id="upload-container" className='inner'>            
+            <Form name="productUpload" onFinish={onsubmitForm} form={form}>  
                 <Form.Item name="imgUpload"
                     label={<div className='upload-label'>상품사진</div>}>
                     <div id="upload-img-placeholder">
