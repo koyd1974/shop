@@ -1,17 +1,25 @@
 import React, { useCallback } from 'react'
-//import useInput from '@/hooks/useInput'
 import { Form, Divider, Input, InputNumber, Button, List } from 'antd';
 import '../scss/upload.css';
 import 'antd/dist/antd.css';
 import { useState } from 'react';
+import { dbService } from '../fbase'
 
-const Upload = (props) => {
 
+const Upload = (userObj) => {
+//     const value = {
+//         seller: seller,
+//         name: name,
+//         price: price,
+//         description: description,
+//         imgupload: imgupload  
+//       }
   
-    var file = null
+  
+    const file = null
     
-    const useInput = (initialValue) => {
-        const [value, setValue] = useState(initialValue);
+    const useInput = (userObj) => {
+        const [value, setValue] = useState(userObj);
         const handler = (event) => {
           setValue(event.target.value);
         };
@@ -21,24 +29,18 @@ const Upload = (props) => {
     const [imgupload, setImgUpload] = useInput('');
     const [seller, setSeller] = useInput('');
     const [name, setName] = useInput('');
-    const [price, setPrice] = useInput('')
-    const [description, setDescription] = useInput('')
-   
+    const [price, setPrice] = useInput('');
+    const [description, setDescription] = useInput('');
+    
     const onChangeImage = ((event) => {
         
         file = event.target.files[0];
         console.log("file", file)
     })
     const onsubmitForm = useCallback(({ imgUpload, seller , name, price, description }) => {
-       /*
-        const value = {
-            seller: seller,
-            name: name,
-            price: price,
-            description: description   
-          }
-         */
-        var formData = new FormData()
+       
+
+        const formData = new FormData()
     
         
         formData.append( "seller", seller)
@@ -51,11 +53,31 @@ const Upload = (props) => {
         for(  let str  of formData ) {
             console.log( str   )
         }
+        
+    })
+    
+    // const onClick = async()=> {
+    //     const db = dbService
+    //     await db.collection("Name").add({ 
+    //         text: form ,
+    //         createdAt: Date.now(),
+    //         creatorId: form.email
+    //     })
+    //     form("")
+    // }
 
+    const onClick = async () => {
+        
+        await dbService.collection('user').add({
+          text: form,
+          createdAt: Date.now(),
+          creatorId: userObj.uid, // userObj: props로 넘겨준 login한 user 정보
+        });
+        form('');
+      };
         // 파이어베이스 -> formData 넘겨줌 ->  파이어베이스 응답 ->  응답에 따라 처리(성공/실패) -> 성공 : 상세페이지로 이동 / 메인페이지로 이동 
         //                                                                                      -> 실패 : 무슨문젠지 알림            
 
-    })
  
     return (
         <div id="upload-container" className='inner'>            
@@ -98,7 +120,7 @@ const Upload = (props) => {
                 />
                 </Form.Item>
                 <Form.Item>
-                    <Button id="submit-button" size="large" htmlType='submit'>
+                    <Button id="submit-button" size="large" htmlType='submit' onClick={onClick} >
                         상품등록하기
                     </Button>
                     
