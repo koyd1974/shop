@@ -1,25 +1,15 @@
 import React, { useCallback } from 'react'
-import { Form, Divider, Input, InputNumber, Button, List } from 'antd';
+import { Form, Divider, Input, InputNumber, Button} from 'antd';
 import '../scss/upload.css';
 import 'antd/dist/antd.css';
 import { useState } from 'react';
 import { dbService } from '../fbase'
 
 
-const Upload = (userObj) => {
-//     const value = {
-//         seller: seller,
-//         name: name,
-//         price: price,
-//         description: description,
-//         imgupload: imgupload  
-//       }
-  
-  
+const Upload = (props) => {
     const file = null
-    
-    const useInput = (userObj) => {
-        const [value, setValue] = useState(userObj);
+        const useInput = (initialValue) => {
+        const [value, setValue] = useState(initialValue);
         const handler = (event) => {
           setValue(event.target.value);
         };
@@ -33,16 +23,11 @@ const Upload = (userObj) => {
     const [description, setDescription] = useInput('');
     
     const onChangeImage = ((event) => {
-        
         file = event.target.files[0];
         console.log("file", file)
     })
     const onsubmitForm = useCallback(({ imgUpload, seller , name, price, description }) => {
-       
-
-        const formData = new FormData()
-    
-        
+       const formData = new FormData()
         formData.append( "seller", seller)
         formData.append( "name", name)
         formData.append( "price", price)
@@ -50,31 +35,28 @@ const Upload = (userObj) => {
         formData.append(  "imgUpload", imgUpload  )
        
         
-        for(  let str  of formData ) {
-            console.log( str   )
-        }
+        // for(  let str  of formData ) {
+        //     console.log( str   )
+        // }
         
     })
+    const onSubmit = (e)=> {
+        e.preventDefault();
+    }
+    const onChange = (event)=> {
+        const {target : {value}} = event
+        form(value)
+    }
     
-    // const onClick = async()=> {
-    //     const db = dbService
-    //     await db.collection("Name").add({ 
-    //         text: form ,
-    //         createdAt: Date.now(),
-    //         creatorId: form.email
-    //     })
-    //     form("")
-    // }
-
-    const onClick = async () => {
-        
-        await dbService.collection('user').add({
-          text: form,
-          createdAt: Date.now(),
-          creatorId: userObj.uid, // userObj: props로 넘겨준 login한 user 정보
-        });
-        form('');
-      };
+    const onClick = async()=> {
+        const db = dbService
+        await db.collection("Name").add({ 
+            text: form ,
+            createdAt: Date.now(),
+            creatorId: form.id
+        })
+        form("")
+    }
         // 파이어베이스 -> formData 넘겨줌 ->  파이어베이스 응답 ->  응답에 따라 처리(성공/실패) -> 성공 : 상세페이지로 이동 / 메인페이지로 이동 
         //                                                                                      -> 실패 : 무슨문젠지 알림            
 
@@ -120,7 +102,7 @@ const Upload = (userObj) => {
                 />
                 </Form.Item>
                 <Form.Item>
-                    <Button id="submit-button" size="large" htmlType='submit' onClick={onClick} >
+                    <Button id="submit-button" size="large" htmlType='submit' onClick={onClick}>
                         상품등록하기
                     </Button>
                     
