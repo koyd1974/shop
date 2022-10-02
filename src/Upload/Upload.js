@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect } from 'react'
 import { Form, Divider, Input, Button } from 'antd';
 // import '../scss/upload.css';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
 import { useState } from 'react';
 import { dbService } from '../fbase'
 import { useNavigate } from 'react-router-dom';
+
 
 
 const Upload = ({userObj}) => {
@@ -100,23 +101,23 @@ const Upload = ({userObj}) => {
     }
 
     const onClick = async () => {
-        // const questions = window.confirm(`이 상품을 올리시겠습니까?`)
-        // if (questions) {
-        //     await dbService.collection("goodsInfo").add({
-        //         text: input,
-        //         createdAt: Date.now(),
-        //         creatorId: userObj.email // userObj: props로 넘겨준 login한 user 정보
-        //     });
-        //     setInput("")
-        //     // navigate('/product2/3')
-        // }
+        const questions = window.confirm(`이 상품을 올리시겠습니까?`)
+        if (questions) {
+            await dbService.collection("goodsInfo").add({
+                text: input,
+                createdAt: Date.now(),
+                creatorId: userObj.email // userObj: props로 넘겨준 login한 user 정보
+            });
+            setInput("")
+            // navigate('/product2/3')
+        }
       };
-      const Test = ()=> {
-        console.log(input.text)
+    //   const On = ()=> {
+    //     console.log(input.text)
         
-        setGoodsInfo(input)
+    //     setGoodsInfo(input)
         
-      }
+    //   }
         // 파이어베이스 -> formData 넘겨줌 ->  파이어베이스 응답 ->  응답에 따라 처리(성공/실패) -> 성공 : 상세페이지로 이동 / 메인페이지로 이동 
         //                                                                                      -> 실패 : 무슨문젠지 알림            
 
@@ -169,7 +170,7 @@ const Upload = ({userObj}) => {
                     <Button id="submit-button" size="large" htmlType='submit' onClick={onClick} >
                         상품등록하기
                     </Button>
-                    <button onClick={Test}>TEST</button>
+                    {/* <button onClick={Test}>TEST</button> */}
                     
                 </Form.Item>
             </Form>
