@@ -41,7 +41,7 @@ const  Comunity = ({userObj})=> {
                 <button onClick={onClick}>작성</button>
             </form>
             <div>
-                {writes.map((write)=> (
+                {writes((write)=> (
                     <WriteButton key={write.id} writeObj={write} isOwner={write.creatorId === userObj.email} />
                 ))}
             </div>

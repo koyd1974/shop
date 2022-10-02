@@ -11,7 +11,7 @@ import Comunity from './main/Comunity';
 import Cart from './main/Cart';
 import Login from './Page/Login';
 import Signup from './Page/Signup';
-import "./scss/custom.css"; 
+import "./scss/custom.scss"; 
 
 
 const App = () => {
