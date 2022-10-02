@@ -39,7 +39,8 @@ const Upload = ({userObj}) => {
         seller: '',
         name: '',
         price: '',
-        description: ''
+        description: '',
+        file: file
     })
     const [goodsInfo, setGoodsInfo] = useState([])
     const {seller, name, price, description} = input

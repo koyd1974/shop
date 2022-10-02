@@ -42,8 +42,8 @@ const App = () => {
 					<Route path="/product/:1" element={<Product />}></Route>
 					{/* 상단에 위치하는 라우트들의 규칙을 모두 확인, 일치하는 라우트가 없는경우 처리 */}
 					<Route path="/product2/:2" element={<Product2 />}></Route>
-					<Route path="/upload/:3" element={<Upload />}></Route>
-					<Route path="/comunity/:4" element={<Comunity />}></Route>
+					<Route path="/upload/:3" element={<Upload userObj={userObj}/>}></Route>
+					<Route path="/comunity/:4" element={<Comunity userObj={userObj}/>}></Route>
 					<Route path="/Cart/:5" element={<Cart/>}></Route>
 				</Routes>
 				<Footer />
