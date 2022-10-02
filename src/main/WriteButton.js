@@ -1,6 +1,6 @@
 import React, { Component, useEffect, useState } from 'react';
 import { dbService } from '../fbase';
-import '../css/Link.css'
+// import '../css/Link.css'
 
 const WriteButton = ({ writeObj, isOwner })=> {
     const [editing, setEditing] = useState(false)
