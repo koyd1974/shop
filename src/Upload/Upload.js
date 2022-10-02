@@ -4,11 +4,13 @@ import { Form, Divider, Input, Button } from 'antd';
 import 'antd/dist/antd.min.css';
 import { useState } from 'react';
 import { dbService } from '../fbase'
+import { storageService } from '../fbase'
 import { useNavigate } from 'react-router-dom';
 
 
 
 const Upload = ({userObj}) => {
+    
 
 //     const value = {
 //         seller: seller,
@@ -20,6 +22,7 @@ const Upload = ({userObj}) => {
   
   
     var file = null
+    var [fileName, setFileName] = useState('');
     
     const useInput = (userObj) => {
         const [value, setValue] = useState(userObj);
@@ -34,24 +37,34 @@ const Upload = ({userObj}) => {
     // const [seller, setSeller] = useInput('');
     // const [name, setName] = useInput('');
     // const [price, setPrice] = useInput('');
-    // const [description, setDescription] = useInput('');
+    //const [description, setDescription] = useInput('');
+
     const [input, setInput] = useState({
         seller: '',
         name: '',
         price: '',
         description: '',
-        file: file
+        filename : ''
     })
+    const [imgUpload, setImgUpload] = useState('');
+    
+
+
+
     const [goodsInfo, setGoodsInfo] = useState([])
-    const {seller, name, price, description} = input
+    const {seller, name, price, description } = input
     const navigate = useNavigate()
     
     const onChangeImage = ((event) => {
-        
+        console.log('Eeeee0',event)
         file = event.target.files[0];
-        console.log("file", file)
+        setFileName(event.target.value);
+        console.log("onChangeImage file", file)
+        console.log("onChangeImage fileName", fileName)
+        setImgUpload(file);
+        console.log("onChangeImage fileName1", fileName)
     })
-    const onsubmitForm = useCallback(({ imgUpload, seller , name, price, description }) => {
+    const onsubmitForm = useCallback(({ imgUpload, seller , name, price, description}) => {
        
 
         const formData = new FormData()
@@ -62,6 +75,7 @@ const Upload = ({userObj}) => {
         formData.append( "price", price)
         formData.append( "description", description)
         formData.append(  "imgUpload", imgUpload  )
+        formData.append(  "fileName", fileName  )
        
         
         for(  let str  of formData ) {
@@ -69,30 +83,11 @@ const Upload = ({userObj}) => {
         }
         
     })
-    
-    // const onClick = async()=> {
-    //     const db = dbService
-    //     await db.collection("Name").add({ 
-    //         text: form ,
-    //         createdAt: Date.now(),
-    //         creatorId: form.email
-    //     })
-    //     form("")
-    // }
-    
-    
-    useEffect(()=> {
-        dbService.collection('goodsInfo').onSnapshot(snapshot=> {
-            const goodsInfoArray = snapshot.docs.map(doc=> ({
-                id: doc.id,
-                ...doc.data()
-            }))
-            setGoodsInfo(goodsInfoArray)
-        })
-    }, [])
+   
     const onSubmit = (e)=> {
         e.preventDefault()
     }
+    /*
     const onChange = (e)=> {
         const {target: {name, value}} = e
         setInput({
@@ -100,18 +95,36 @@ const Upload = ({userObj}) => {
             [name]: value
         })
     }
-
+*/
     const onClick = async () => {
+
+        console.log("onClick imgUpload #############", imgUpload);
+        console.log("onClick input #############", input);
+        console.log('onClick fileName #############', fileName);
+        
         const questions = window.confirm(`이 상품을 올리시겠습니까?`)
+        
         if (questions) {
             await dbService.collection("goodsInfo").add({
+                //imgUpload: imgUpload,
                 text: input,
                 createdAt: Date.now(),
                 creatorId: userObj.email // userObj: props로 넘겨준 login한 user 정보
             });
+       
+            
+
+            
+
+
+            storageService.ref()
+                            .child('dogimg/' + imgUpload.name )
+                            .put(imgUpload);
+
             setInput("")
             // navigate('/product2/3')
         }
+        
       };
     //   const On = ()=> {
     //     console.log(input.text)
@@ -137,14 +150,14 @@ const Upload = ({userObj}) => {
                 <Divider/>
                 <Form.Item name="seller" 
                     label={<div className='upload-label'>판매자명</div>}>
-                    <Input onChange={onChange} value={seller} className="nameUpload" size='large'
+                    <Input  value={seller} className="nameUpload" size='large'
                     placeholder='판매자 이름을 입력하세요 ' name="seller"/>
                 </Form.Item>
                 <Divider/>
                 <Form.Item name="name"
                 label={<div className='upload-label'>상품이름</div>}>
                     <Input
-                        onChange={onChange} value={name}
+                         value={name}
                         className='upload-name'
                         size='large'
                         placeholder='상품 이름을 입력해주세요'
@@ -153,13 +166,13 @@ const Upload = ({userObj}) => {
                 <Divider/>
                 <Form.Item name="price"
                 label={<div className='upload-label'>상품가격</div>}>
-                    <Input type='number' onChange={onChange} value={price} defaultValue={0} size="large" name="price"/>
+                    <Input type='number'  value={price} defaultValue={0} size="large" name="price"/>
                 </Form.Item>
                 <Divider/>
                 <Form.Item name="description"
                 label={<div className='upload-label'>상품소개</div>}>
                 <Input.TextArea
-                    onChange={onChange} value={description}
+                     value={description}
                     size='large'
                     id = "product-description"
                     name="description"
