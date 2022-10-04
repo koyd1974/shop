@@ -1,12 +1,7 @@
-
 import bg from "./bg.jpg";
 
 
-const Main = (props) => {
- 
-   
-  
-   
+const Main = (props) => { 
 	return (
       <>
         {/* Main-bg */}

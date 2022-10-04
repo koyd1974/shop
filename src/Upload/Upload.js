@@ -2,13 +2,10 @@ import { Form, Divider, Input, Button } from 'antd';
 // import '../scss/upload.css';
 import 'antd/dist/antd.min.css';
 import { useState } from 'react';
-import { dbService } from '../fbase'
-import { storageService } from '../fbase'
-
+import { dbService, storageService } from '../fbase'
 
 
 const Upload = ({userObj}) => {
-
     const [form] = Form.useForm();
     // 서버로 전달하기위해 하나의 input값으로 지정 textData
     const [input, setInput] = useState({

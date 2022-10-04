@@ -1,9 +1,10 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import '../scss/Link.css'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { authService } from '../fbase';
 import { useNavigate } from 'react-router-dom';
+
 
 const Login = ()=> {
     const [loginID, setLoginID] = useState('')
@@ -71,6 +72,7 @@ const Login = ()=> {
 
             <p>아직 회원이 아니라면? <Link to='/signup' className='text-link'>회원가입</Link></p>
         </div>
+       
     );
 }
 
