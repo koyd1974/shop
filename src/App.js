@@ -17,7 +17,7 @@ import "./scss/custom.scss";
 const App = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [init, setInit] = useState(false)
-    const [userObj, setUserObj] = useState(null)
+    const [userObj, setUserObj] = useState(null) //최초 정보값.
 
   useEffect(()=> {
       authService.onAuthStateChanged((user)=> {
