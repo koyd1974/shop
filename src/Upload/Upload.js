@@ -35,12 +35,13 @@ const Upload = ({userObj}) => {
             ...input,
             [name]: value
         })
-    } //input갑에 저장하기 위한 함수
+    } //input값에 저장하기 위한 함수
 
     const onClick = async () => {
 
         const questions = window.confirm(`이 상품을 올리시겠습니까?`)
         
+        // 예 클릭시 넘어가는 함수. goodsinfo에서 값을 가져오고 firebaseData에 값을 저장
         if (questions) {
             input.fileName = file.name; 
             
@@ -49,7 +50,7 @@ const Upload = ({userObj}) => {
                 createdAt: Date.now(),
                 creatorId: userObj.email // userObj: props로 넘겨준 login한 user 정보
             });
-       
+            // storge image upload 경로
             storageService.ref()
                             .child('dogimg/' + file.name )
                             .put(file);
