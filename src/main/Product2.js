@@ -14,10 +14,7 @@ const Product2 = () => {
             setGoodsArray(goodsInfoArray) //새로 만들어진 파일을 생성
         })
     }, [])
-    const Test = ()=> {
-        console.log(goodsArray)
-      
-    }
+  
     // const Test = ()=> {
     //     const [goodsInfo, setGoodsInfo] = useState("")
     //     dbService.collection('goodsInfo').onSnapshot(snapshot=> {
@@ -32,7 +29,7 @@ const Product2 = () => {
     // }
     return (
         <div>
-            <button onClick={Test}>test</button>
+           
             <div>
                 <p>상품보기 페이지</p>
                 {goodsArray.map((data,index)=> (
