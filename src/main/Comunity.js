@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { dbService } from '../fbase'
 import styled from 'styled-components';
@@ -8,6 +8,7 @@ import WriteButton from './WriteButton';
 const  Comunity = ({userObj})=> {
     const [write, setWrite] = useState("")
     const [writes, setWrites] = useState([])
+    const date = new Date()  // 현시간
 
     useEffect(()=> {
         dbService.collection('user').onSnapshot(snapshot => {
@@ -15,22 +16,27 @@ const  Comunity = ({userObj})=> {
                 id: doc.id,
                 ...doc.data()
             }))
-            setWrites(writeArray)
+            setWrites(writeArray)  //
+            
         })
     }, [])
-
     const onSubmit = (e)=> {
-        e.preventDefault();
+        e.preventDefault();  
     }
     const onChange = (event)=> {
         const {target : {value}} = event
-        setWrite(value)
+        setWrite(value)  //입력 값이 바뀔떄마다 value값에 포함시킨다.
+    }
+    const time = {
+        hour: String(date.getHours()).padStart(2, "0"),
+        min: String(date.getMinutes()).padStart(2, "0")  // 채팅 입력시 입력시간 추가
     }
     const onClick = async()=> {
         const db = dbService
         await db.collection("user").add({ 
             text: write,
             createdAt: Date.now(),
+            time: `${time.hour}:${time.min}`,
             creatorId: userObj.email
         })
         setWrite("")

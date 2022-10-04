@@ -1,19 +1,11 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { dbService } from '../fbase';
 // import '../css/Link.css'
 
 const WriteButton = ({ writeObj, isOwner })=> {
     const [editing, setEditing] = useState(false)
     const [newWrite, setNewWrite] = useState(writeObj.text)
-    const date = new Date()
-
-    const time = {
-        hour: date.getHours(),
-        min: date.getMinutes(),
-        sec: date.getSeconds()
-    }
-    const timeString = `${time.hour}:${time.min}:${time.sec}`
-
+   
     const onDeleteClick = async()=> {
         const ok = window.confirm(`정말로 삭제하시겠습니까?`)
         if (ok) {
@@ -21,12 +13,13 @@ const WriteButton = ({ writeObj, isOwner })=> {
         }
     }
     const toggleEditing = () => {
-        setEditing((prev) => !prev);
+        setEditing((prev) => !prev); 
     }
     const onSubmit = (event)=> {
         event.preventDefault();
     }
-    const onClick = async () => {
+    //수정을 클릭햇을 시 원래 입력햇던 값과 입력이 다를경우 다른 입력값을 업로드 함.
+    const onClick = async () => {  
         if (newWrite !== writeObj.text) {
           await dbService.doc(`user/${writeObj.id}`).update({
             text: newWrite,
@@ -34,6 +27,7 @@ const WriteButton = ({ writeObj, isOwner })=> {
         }
         setEditing(false);
     };
+    //수정 시 바뀌는 입력값 저장
     const onChange = (event) => {
         const {
           target: { value },
@@ -43,7 +37,7 @@ const WriteButton = ({ writeObj, isOwner })=> {
     return (
         <div>
             {
-                editing ? (
+                editing ? ( //3항 연산자.
                     <>
                         <form onSubmit={onSubmit}>
                             <input type="text" placeholder="수정하세요" value={newWrite} required onChange={onChange} />
@@ -53,9 +47,8 @@ const WriteButton = ({ writeObj, isOwner })=> {
                     </>
                 ) : (
                     <div>
-                        <h4>{writeObj.text}</h4>
-                        <h6>{timeString}</h6>
-                        {isOwner && (
+                        <h4>{writeObj.text}</h4>                       
+                        {isOwner && ( // 글쓴이 주인이면 수정,삭제 가능 기능.
                             <div>
                                 <button onClick={onDeleteClick}>Delete Nweet</button>
                                 <button onClick={toggleEditing}>Edit Nweet</button>
