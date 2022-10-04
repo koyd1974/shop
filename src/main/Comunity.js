@@ -3,12 +3,12 @@ import { useState } from 'react';
 import { dbService } from '../fbase'
 import styled from 'styled-components';
 import WriteButton from './WriteButton';
-// import "../css/comunity.css"
+import "../scss/comunity.css"
 
 const  Comunity = ({userObj})=> {
     const [write, setWrite] = useState("")
     const [writes, setWrites] = useState([])
-    const date = new Date()  // 현시간
+    const date = new Date()  // 현시간 입력데이터
 
     useEffect(()=> {
         dbService.collection('user').onSnapshot(snapshot => {
@@ -16,7 +16,7 @@ const  Comunity = ({userObj})=> {
                 id: doc.id,
                 ...doc.data()
             }))
-            setWrites(writeArray)  //
+            setWrites(writeArray)  // data 입력하기
             
         })
     }, [])
@@ -40,7 +40,7 @@ const  Comunity = ({userObj})=> {
             creatorId: userObj.email
         })
         setWrite("")
-    }
+    }  // 작성버튼 클릭시 data입력.
 
     return (
         <div>
