@@ -37,7 +37,7 @@ const WriteButton = ({ writeObj, isOwner })=> {
     return (
         <div>
             {
-                editing ? ( //3항 연산자.
+                editing ? ( 
                     <>
                         <form onSubmit={onSubmit}>
                             <input type="text" placeholder="수정하세요" value={newWrite} required onChange={onChange} />

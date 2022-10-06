@@ -15,6 +15,13 @@ const Cart = ({userObj})=> {
       setCart(resultArray)
     })
   }, [])
+
+  const onClick = async(data)=>{
+    const ok = window.confirm(`삭제하시겠습니까?`)
+    if (ok){
+      await dbService.doc(`carqt/${data.id}`).delete()
+    }
+  }
   return(
     <div>
       <div>
@@ -23,6 +30,7 @@ const Cart = ({userObj})=> {
               <ul>
                 <li><img src={data.img} width={50} height={50}/></li>
                 <li>{data.text}원</li>
+                <button onClick = {onClick.bind(null, data)}>취소</button>
               </ul>
           </div>
         ))}

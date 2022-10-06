@@ -39,7 +39,7 @@ const Product2 = ({userObj}) => {
                                     <li>{data.text.name}</li>
                                     <li>{data.text.price}원</li>
                                     <li>{data.text.description}</li>
-                                    <li><button onClick={onClick.bind(null, data)}>장바구니</button></li>
+                                    <li><button onClick={onClick.bind(null, data)}>장바구니추가하기</button></li>
                                 </ul>
                             </div>
                         ))}
