@@ -19,7 +19,7 @@ const Cart = ({userObj})=> {
   const onClick = async(data)=>{
     const ok = window.confirm(`삭제하시겠습니까?`)
     if (ok){
-      await dbService.doc(`carqt/${data.id}`).delete()
+      await dbService.doc(`Cart/${data.id}`).delete() // firebase store database 에 cart라는 경로로 이동후 내가쓴 id값을 삭제.
     }
   }
   return(
@@ -29,7 +29,8 @@ const Cart = ({userObj})=> {
           <div key={index}>
               <ul>
                 <li><img src={data.img} width={50} height={50}/></li>
-                <li>{data.text}원</li>
+                <li>상품명 : {data.text.name}</li>
+                <li>{data.text.price}원</li>
                 <button onClick = {onClick.bind(null, data)}>취소</button>
               </ul>
           </div>
