@@ -4,6 +4,7 @@ import { getStorage, ref, getDownloadURL  } from "firebase/storage";
 import styled from 'styled-components';
 import bg from "./bg.jpg";
 
+
 const Main = (props) => { 
   const storage = getStorage();
   
@@ -30,7 +31,7 @@ const Main = (props) => {
                     <div>
                         <p>상품보기 페이지</p>
                         {goodsArray.sort((a,b)=> a.createdAt - b.createdAt).map((data,index)=> (
-                            <div key={index}>
+                            <div key={index}>  
                                 <ul>
                                     <li><img src={data.fileUrl} width={50} height={50} /></li>
                                     <li>{data.text.name}</li>
@@ -41,6 +42,9 @@ const Main = (props) => {
                     </div>
                 </StyledAllwaysScrollSection>
             </div> 
+        
+
+           
      </div>
 
       </>  

@@ -1,9 +1,34 @@
 import { NavLink } from 'react-router-dom';
 import { Navbar, Container} from 'react-bootstrap'
 import { UserOutlined, UserAddOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
+import { authService } from '../fbase'
 
+const Header = ({isLoggedIn})=> {
+  const navigate = useNavigate()
 
-function Header(props) {
+  const onClickLogOut = ()=> {
+      authService.onAuthStateChanged((user)=> {
+          if(user) {
+              navigate("/")
+              authService.signOut()
+          }
+      })
+  }
+  const onClickFunc = ()=> {
+      authService.onAuthStateChanged((user)=> {
+          if (user) {
+
+          } else {
+              const ok = window.confirm(`로그인이 필요한 화면입니다. 로그인하시겠습니까?`)
+              if (ok === true) {
+                  navigate('/login')
+              } else {
+                  navigate('/')
+              }
+          }
+      })
+  }
 
    
     return (
