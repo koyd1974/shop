@@ -4,7 +4,7 @@ import { dbService } from '../fbase';
 import styled from 'styled-components';
 
 
-const Product2 = () => {
+const Product2 = ({userObj}) => {
     const [goodsArray, setGoodsArray] = useState([])
     useEffect(()=> {
         dbService.collection('goodsInfo').onSnapshot(snapshot=> {
@@ -14,7 +14,17 @@ const Product2 = () => {
             }))
             setGoodsArray(goodsInfoArray)
         })
-    }, [])
+    }, [])//useEffect 의존성배열, 디팬던시
+    const onClick = async(data)=> {
+        console.log(data)
+        // 내가 넣을 값인지 찍어봐요. 그 값의 타입이 내가 넣으려는 탑인지 확인해ㅑ요
+        const img = data.fileUrl
+        dbService.collection("Cart").add({
+            text: data.text.price,
+            user: userObj.email,
+            img
+        })
+    }
     return (
         <div>
             <div>
@@ -29,6 +39,7 @@ const Product2 = () => {
                                     <li>{data.text.name}</li>
                                     <li>{data.text.price}원</li>
                                     <li>{data.text.description}</li>
+                                    <li><button onClick={onClick.bind(null, data)}>장바구니</button></li>
                                 </ul>
                             </div>
                         ))}
