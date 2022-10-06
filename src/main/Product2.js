@@ -20,7 +20,7 @@ const Product2 = ({userObj}) => {
         // 내가 넣을 값인지 찍어봐요. 그 값의 타입이 내가 넣으려는 탑인지 확인해ㅑ요
         const img = data.fileUrl
         dbService.collection("Cart").add({
-            text: data.text.price,
+            text: data.text,
             user: userObj.email,
             img
         })
