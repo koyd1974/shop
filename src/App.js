@@ -19,38 +19,35 @@ const App = () => {
     const [init, setInit] = useState(false)
     const [userObj, setUserObj] = useState(null) //최초 정보값.
 
-  useEffect(()=> {
-      authService.onAuthStateChanged((user)=> {
-          if (user) {
-              setIsLoggedIn(true)
-              setUserObj(user)
-          } else {
-              setIsLoggedIn(false)
-          }
-          setInit(true)
-        //   console.log(userObj.uid)
-      })
-  }, [])
-	return (
-		<div className='App'>
-			<BrowserRouter>
-				<Header/>
-				<Routes>
-					<Route path="/" element={<Main />} ></Route>
-					<Route path='/login/:log' element={<Login />} />
-                	<Route path='/signup/:sig' element={<Signup />} />
-					<Route path="/product/:1" element={<Product />}></Route>
-					{/* 상단에 위치하는 라우트들의 규칙을 모두 확인, 일치하는 라우트가 없는경우 처리 */}
-					<Route path="/product2/:2" element={<Product2 />}></Route>
-					<Route path="/upload/:3" element={<Upload userObj={userObj}/>}></Route>
-					<Route path="/comunity/:4" element={<Comunity userObj={userObj}/>}></Route>
-					<Route path="/Cart/:5" element={<Cart/>}></Route>
-				</Routes>
-				<Footer />
-			</BrowserRouter>
-
-		</div>
-	);
+    useEffect(()=> {
+        authService.onAuthStateChanged((user)=> {
+            if (user) {
+                setIsLoggedIn(true)
+                setUserObj(user)
+            } else {
+                setIsLoggedIn(false)
+            }
+            setInit(true)
+            console.log(userObj.uid)
+        })
+    }, [])
+    return (
+        <BrowserRouter>
+        {init ? <Header isLoggedIn={isLoggedIn} /> : "Initializing..." }
+            <Routes>
+                <Route path='/' element={<Main />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/signup' element={<Signup />} />
+				<Route path="/product/:1" element={<Product />} />
+									{/* 상단에 위치하는 라우트들의 규칙을 모두 확인, 일치하는 라우트가 없는경우 처리 */}
+				<Route path="/product2/:2" element={<Product2 userObj={userObj} />} />
+				<Route path="/upload/:3" element={<Upload userObj={userObj} />} />
+				<Route path="/Cart/:5" element={<Cart userObj={userObj} />} />
+                <Route path="/comunity/:4" element={<Comunity userObj={userObj}/>} />
+            </Routes>
+            <Footer />
+        </BrowserRouter>
+    );
 }
 
 export default App;
