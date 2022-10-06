@@ -15,7 +15,6 @@ const Signup = ()=> {
     }
     const CreateNewAccount = (event)=> {
         const {target: {name, value}} = event
-        
         if (name === 'newId') {
             setNewId(value)
         } else if (name === 'newPassword') {
