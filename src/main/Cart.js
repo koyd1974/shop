@@ -9,8 +9,8 @@ const Cart = ({userObj})=> {
         id: doc.id,
         ...doc.data()
       }))
-      const resultArray = cartArray.filter((data)=> {
-        return data.user === userObj.email
+      const resultArray = cartArray.filter((data)=> { //product2에서 가져온 정보를 사용자만 볼수 있게 fillter를 사용함.
+        return data.user === userObj.email //data정보와 제시한 정보가 맞으면 사용자 정보만 보이게 리턴해줌.
       })
       setCart(resultArray)
     })

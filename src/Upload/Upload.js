@@ -35,6 +35,8 @@ const Upload = ({userObj}) => {
         const response = await fileRef.putString(file, "data_url")
         const fileUrl = await response.ref.getDownloadURL()
         const questions = window.confirm(`이 상품을 올리시겠습니까?`)
+
+    
         
         if (questions) { 
             await dbService.collection("goodsInfo").add({
