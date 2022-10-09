@@ -1,12 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { dbService } from '../fbase';
-import { getStorage, ref, getDownloadURL  } from "firebase/storage";
+import { getStorage  } from "firebase/storage";
 import styled from 'styled-components';
+import { Carousel } from 'antd';
 import bg from "./bg.jpg";
+import bg2 from "./bg2.jpg";
+import bg3 from "./bg3.jpg";
+
 
 
 const Main = (props) => { 
-  const storage = getStorage();
+    const contentStyle = {
+        height: '400px',
+        color: '#fff',
+        lineHeight: '400px',
+        textAlign: 'center',
+        background: '#364d79',
+      };
+
   
   const [goodsArray, setGoodsArray] = useState([])  
    useEffect(()=> {
@@ -21,9 +32,17 @@ const Main = (props) => {
   
 	return (
       <>
-        {/* Main-bg */}
-      <img id='main-bg' className="main-bg" src ={bg}></img>
-    
+    <Carousel autoplay>
+    <div>
+      <h3 style={contentStyle}>1</h3>
+    </div>
+    <div>
+      <h3 style={contentStyle}>2</h3>
+    </div>
+    <div>
+      <h3 style={contentStyle}>3</h3>
+    </div>
+    </Carousel>
 
       <div>
       <div>

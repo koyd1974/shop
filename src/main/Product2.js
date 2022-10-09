@@ -47,12 +47,7 @@ const Product2 = ({userObj}) => {
                     </div>
                 </StyledAllwaysScrollSection>
             </div>
-            {/* <div>
-                <p>상품보기 페이지</p>
-                {goodsArray.map((data,index)=> (
-                    <div key={index}>{data.text.seller}님</div>
-                ))}
-            </div> */}
+  
         </div>
     );    
 }
