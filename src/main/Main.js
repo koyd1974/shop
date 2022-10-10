@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { dbService } from '../fbase';
-import styled from 'styled-components';
+
 import { Carousel } from 'antd';
 import bg from "./bg.jpg";
 import bg2 from "./bg2.jpg";
@@ -9,6 +9,8 @@ import bg3 from "./bg3.jpg";
 
 
 const Main = (props) => { 
+
+    // mainbg antd
     const contentStyle = {
         height: '400px',
         color: '#fff',
@@ -45,7 +47,7 @@ const Main = (props) => {
 
       <div>
       <div>
-                <StyledAllwaysScrollSection>
+               
                     <div>
                         <p>상품보기 페이지</p>
                         {goodsArray.sort((a,b)=> a.createdAt - b.createdAt).map((data,index)=> (
@@ -58,7 +60,7 @@ const Main = (props) => {
                             </div>
                         ))}
                     </div>
-                </StyledAllwaysScrollSection>
+               
             </div> 
         
 
@@ -71,16 +73,3 @@ const Main = (props) => {
 
 export default Main;
 
-const StyledAllwaysScrollSection = styled.div`
-    overflow: scroll;
-    height: 500px;
-    &::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-        border-radius: 6px;
-        background-color: rgb(255, 255, 255, 0.4);
-    }
-    &::-webkit-scrollbar-thumb {
-        background-color: rgb(0, 0, 0, 0.3);
-        border-radius: 6px;
-    }`

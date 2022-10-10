@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
-import { Navbar, Container} from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
 import { authService } from '../fbase'
+import '../scss/Link.css'
 
 const Header = ({isLoggedIn})=> {
   const navigate = useNavigate()
@@ -34,9 +34,8 @@ const Header = ({isLoggedIn})=> {
 		<>
     {/* Navbar */}
     
-    <div id="header">
-    <Navbar bg="light" variant="light">
-        <Container>
+    <div id="navbar">
+
         {isLoggedIn ?(
                         <>
                             <h1><NavLink to ='/' className='text-link'>PetShop</NavLink></h1>
@@ -73,8 +72,7 @@ const Header = ({isLoggedIn})=> {
                     <li><NavLink to ='/login/login'style={{paddingLeft: 13, textDecoration: 'none', color : 'black'}}><UserOutlined /></NavLink></li>
                     <li><NavLink to ='/signup/signup'style={{paddingLeft: 13, textDecoration: 'none' , color : 'black'}}><UserAddOutlined /></NavLink></li>
                 </ul> */}
-        </Container>
-      </Navbar>
+       
         
         </div>   
     

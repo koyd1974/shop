@@ -6,15 +6,15 @@ body {
   position: relative;
   border-style: rgb(194, 187, 187);
 }
-#header {
-  // position: fixed;
-  // border: 1px solid yellow;
-  // z-index: 20;
-}
-#header ul {
+// #navbar {
+//   position: fixed;
+//   border: 1px solid yellow;
+//   z-index: 20;
+// }
+#navbar ul {
   display: flex;
 }
-#header ul li {
+#navbar ul li {
   padding: 0 5px;
 }
 
