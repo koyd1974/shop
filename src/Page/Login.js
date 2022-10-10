@@ -116,7 +116,13 @@ const Login = ()=> {
           placeholder='비밀번호' name='Password' onChange={onChange} value={loginPassword} required
         />
       </Form.Item>
-    
+      <Form.Item>
+        <Form.Item name="remember" valuePropName="checked" noStyle>
+          <Checkbox>Remember me</Checkbox>
+        </Form.Item>
+        <Link to='/signup' className='login-form-forgot'>회원가입</Link>
+        
+      </Form.Item>
 
       <Form.Item>
         <Button type="primary" htmlType="submit" className="login-form-button" onClick={OnClickLog}>
