@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { dbService } from '../fbase';
-import { getStorage  } from "firebase/storage";
 import styled from 'styled-components';
 import { Carousel } from 'antd';
 import bg from "./bg.jpg";
@@ -34,13 +33,13 @@ const Main = (props) => {
       <>
     <Carousel autoplay>
     <div>
-      <h3 style={contentStyle}>1</h3>
+      <h3 style={contentStyle}><img src={bg}height='100%' width='100%'></img></h3>
     </div>
     <div>
-      <h3 style={contentStyle}>2</h3>
+      <h3 style={contentStyle}><img src={bg2}height='100%' width='100%' /></h3>
     </div>
     <div>
-      <h3 style={contentStyle}>3</h3>
+      <h3 style={contentStyle}><img src={bg3}height='100%' width='100%' /></h3>
     </div>
     </Carousel>
 

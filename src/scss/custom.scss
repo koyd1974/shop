@@ -1,52 +1,114 @@
-/* header */
-// #header{
-//   height: 75px;
-//   padding: 1rem;
-//   color: white;
-//   background: white;
-//   font-weight: bold;
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-// }
-
-li {
-   list-style: none ;
-  }
 .inner {
-  width: 1200px;
+  width: 100%;
   margin: 0 auto;
 }
-#header .inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+body {
+  position: relative;
+  border-style: rgb(194, 187, 187);
+}
+#header {
+  // position: fixed;
+  // border: 1px solid yellow;
+  // z-index: 20;
 }
 #header ul {
   display: flex;
 }
 #header ul li {
-  padding: 0 10px;
+  padding: 0 5px;
 }
-
 
 /* // footer */
 
 #main-footer {
-  position:fixed;
-  left:0px;
-  bottom:0px;
-  height:40px;
-  width:100%;
-  background:#454f51;
+  left: 0px;
+  bottom: 0px;
+  height: 40px;
+  width: 100%;
+  background: #454f51;
   color: white;
 }
 
- /* main-bg */
-  #main-bg{
+/* main-bg */
+#main-bg {
+  border: 1px solid red;
+  width: 100%;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+/* 베스트 상품 */
+.bestGoodsContainer {
+  list-style: none;
+  width: 370px;
+}
+.descriptionBox {
+  height: 450px;
+}
+.bestGoodsItem {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+.imgContainer img {
+  width: 100%;
+  height: 200px;
+}
+@media only screen and (min-width: 768px) {
+  /* 태블릿 CSS */
+  #main-bg {
     width: 100%;
-    height : 500px;
-    background-size : cover;
-    background-position : center;
+    height: 400px;
   }
-
+  .title-bestgoods {
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+    padding: 10px 0;
+  }
+  .bestGoodsContainer {
+    list-style: none;
+    display: flex;
+    flex-flow: column wrap;
+    padding: 0;
+    margin: 0 auto;
+    margin-block-start: 0;
+  }
+  .BestGoodsItem-right {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 400px;
+    margin: 0 auto;
+    margin-top: 2rem;
+    box-shadow: 0 2px 6px #333;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .BestGoodsItem-left {
+    justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 50%;
+    margin: 0 auto;
+    margin-top: 2rem;
+    box-shadow: 0 2px 6px #333;
+    border-radius: 12px;
+    overflow: hid;
+  }
+  .descriptionBox {
+    border: 1px solid purple;
+    width: 100%;
+    height: 300px;
+    background-color: whitesmoke;
+    box-shadow: 0 2px 6px #333;
+  }
+  .itemContainer {
+    padding: 1rem;
+    width: 70%;
+    text-align: start;
+  }
+}

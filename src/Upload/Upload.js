@@ -1,5 +1,5 @@
-import { Form, Divider, Input, Button, Result } from 'antd';
-// import '../scss/upload.css';
+import { Form, Divider, Input, Button } from 'antd';
+import '../scss/upload.scss';
 import 'antd/dist/antd.min.css';
 import { v4 as uuidv4 } from 'uuid';
 import { useState, useEffect } from 'react';
@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Upload = ({userObj}) => {
     const navigate = useNavigate()
-    const [file, setFile] = useState()
+    const [file, setFile] = useState(null)
     // 서버로 전달하기위해 하나의 input값으로 지정 textData
     const [goods, setGoods] = useState({
         seller: '',
@@ -35,8 +35,6 @@ const Upload = ({userObj}) => {
         const response = await fileRef.putString(file, "data_url")
         const fileUrl = await response.ref.getDownloadURL()
         const questions = window.confirm(`이 상품을 올리시겠습니까?`)
-
-    
         
         if (questions) { 
             await dbService.collection("goodsInfo").add({
@@ -44,13 +42,7 @@ const Upload = ({userObj}) => {
                 createdAt: Date.now(),
                 creatorId: userObj.email,
                 fileUrl
-            }).then( (result) => {
-                alert("상품페이지로 이동하시겠습니까?");
-            } ).catch((error) => {
-                alert("실패")
-            })
-
-
+            });;
             navigate("/product2/:2")
             setGoods("")
             setFile(null)
@@ -113,9 +105,11 @@ const Upload = ({userObj}) => {
                 />
                 </Form.Item>
                 <Form.Item>
-                    <Button id="submit-button" size="large" htmlType='submit' onClick={onClick} >
-                        상품등록하기
-                    </Button>
+                    <div id='upload-button-container'>
+                        <Button id="submit-button" size="large" htmlType='submit' onClick={onClick} >
+                            상품등록하기
+                        </Button>
+                    </div>
                 </Form.Item>
             </Form>
         </div>

@@ -1,5 +1,15 @@
 .comunity {
     height: 500px;
-    width: 400px;
+    width: 100%;
     border: 1px solid #000;
+}
+.Chat {
+    vertical-align: middle;
+    resize: none;
+}
+.chat-input {
+    width: 80%;
+}
+.chat-button {
+    width: 20%;
 }
