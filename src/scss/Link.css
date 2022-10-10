@@ -29,6 +29,9 @@ li {
 
 .login-form {
   max-width: 300px;
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
 }
 .login-form-forgot {
   float: right;
@@ -37,7 +40,7 @@ li {
   float: left;
 }
 .login-form-button {
-  width: 50%;
+  width: 100%;
 }
 
 
