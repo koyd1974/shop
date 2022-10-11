@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { dbService } from '../fbase';
+import { Card } from 'antd';
+import { Col, Row } from 'antd';
+import { Button } from 'antd';
+
+
 // import { storageService } from '../fbase'
-import styled from 'styled-components';
 
 
+const { Meta } = Card;
 const Product2 = ({userObj}) => { 
     const [goodsArray, setGoodsArray] = useState([])
     useEffect(()=> {
@@ -25,46 +30,60 @@ const Product2 = ({userObj}) => {
             img
         }) // 클릭시 업로드 했던 정보를 가져옴.
     }
+
+    const printTag = (data, index) => {
+
+
+        
+
+        var a = (index % 4 === 1) ? <Row> : <Row>
+            
+        
+        a+=<Col>
+        a+=<Card hoverable style={{width: 260,}} cover={<img alt="example" src={data.fileUrl}/> }>
+   
+        a+= <Meta title="Europe Street beat" description={data.text.name} />
+        a+=<Meta description={data.text.seller} />
+        a+=<Meta description={data.text.description} />
+        a+=<Meta description={data.text.price} />
+        a+=<Button block onClick={onClick.bind(null, data)}>장바구니추가하기</Button>
+ 
+        a+=</Card>
+        a+=</Col>
+        a+=</Row>
+
+        //document.getElementById('printData').innerHTML = a;
+        
+        return a
+        
+    }
+
+
+
     return (
         <div>
             <div>
-                <StyledAllwaysScrollSection>
-                    <div>
-                        <p>상품보기 페이지</p>
-                        {goodsArray.sort((a,b)=> a.createdAt - b.createdAt).map((data,index)=> (
-                            <div key={index}>
-                                <ul>
-                                    <li><img src={data.fileUrl} width={50} height={50} /></li>
-                                    <li>{data.text.seller}님</li>
-                                    <li>{data.text.name}</li>
-                                    <li>{data.text.price}원</li>
-                                    <li>{data.text.description}</li>
-                                    <li><button onClick={onClick.bind(null, data)}>장바구니추가하기</button></li>
-                                      {/* bind 함수로 인해 우리가 원하는 한가지 값만 가져옴. - > Cart로 보냄.*/}
-                                </ul>
-                            </div>
-                        ))}
-                    </div>
-                </StyledAllwaysScrollSection>
+                <p>상품보기 페이지</p>
+                    {goodsArray.sort((a,b)=> a.createdAt - b.createdAt).map((data,index)=> (
+
+                        printTag(data, index)
+
+                        
+                    
+                       
+                    ))}
+                    {/* <div id="printData">
+
+                    </div> */}
             </div>
+   
+            
   
         </div>
     );    
 }
 
+
+
 export default Product2;
 
-const StyledAllwaysScrollSection = styled.div`
-    overflow: scroll;
-    height: 500px;
-    &::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-        border-radius: 6px;
-        background-color: rgb(255, 255, 255, 0.4);
-    }
-    &::-webkit-scrollbar-thumb {
-        background-color: rgb(0, 0, 0, 0.3);
-        border-radius: 6px;
-    }
-`

@@ -32,8 +32,12 @@ const App = () => {
         })
     }, [])
     return (
+        
         <BrowserRouter>
+        <div className='wrapper'>
+        <div className='contentWrapper'>   
         {init ? <Header isLoggedIn={isLoggedIn} /> : "Initializing..." }
+      
             <Routes>
                 <Route path='/' element={<Main />} />
                 <Route path='/login' element={<Login />} />
@@ -45,7 +49,9 @@ const App = () => {
 				<Route path="/Cart/:5" element={<Cart userObj={userObj} />} />
                 <Route path="/comunity/:4" element={<Comunity userObj={userObj}/>} />
             </Routes>
+            </div>
             <Footer />
+            </div>
         </BrowserRouter>
     );
 }

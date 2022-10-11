@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
@@ -29,26 +29,48 @@ const Signup = ()=> {
         
         if (name === 'newId') {
             setNewId(value)
-            setSamePwd(false)
         } else if (name === 'newPassword') {
             setNewPassword(value)
-            setSamePwd(true)
         }
     }
-    const onChange = (e)=> {
+    useEffect(()=> {
+        if (newPassword !== checkPassword) {
+            setSamePwd(false)
+            console.log(`비번이 다르다`)
+            console.log(samePwd)
+        } else if (newPassword === checkPassword) {
+            setSamePwd(true)
+            console.log(`비번이 맞다`)
+        }
+    }, [checkPassword])
+    console.log(samePwd)
+    const onChange = async(e)=> {
         const {target: {value, name}} = e
         if (name === "name") {
             setName(value)
         } else if (name === "pwd2") {
-            if (newPassword !== value) {
-                console.log('비번이 달라요')
-                setCheckPassword(value)
-            } else if (newPassword === value) {
-                setCheckPassword(value)
-                console.log('비번 일치!')
-            }
+            setCheckPassword(value)
+            // if (newPassword !== value) {
+            //     setCheckPassword(value)
+            //     setSamePwd(false)
+            //     console.log(`비번이 다르다`)
+            // } else if (newPassword === value) {
+            //     setCheckPassword(value)
+            //     setSamePwd(true)
+            //     console.log(`비번이 맞다`)
+            // }
+            // console.log(`${newPassword}\n${value}\n${samePwd}`)
         }
     }
+
+
+    // 1. 내가 비번을 다르게 키보드를 누를때마다alert가 뜬다? 그래서 로그인버튼을 누르면 alert가 뜨도록 onSubmitHandler 거기로 이로직이 가야된다.
+    // 2. 브라우저가 인식하는 순간에 대한 이해가 좀 필요. useState가 있을때는 그 값이 변할때마다 브라우저가 보고 있지만 없이 value로 변경만하면 이건 인식을 안해요.
+    // 3. 렌더링 차원이 아니라 이건 상태관리차원. 랜더링은 화면에 있는 요소를 바꿀때. 밸류값의 변경에 따른거라 useState훅을 사용하면 브라우저가 변경시에 인식하게 됨.
+    // 4. state관리가 어려워요.  
+    // useEffect(()=> {
+    //     console.log('in')
+    // }, [newPassword])
     const onClick = async(event)=> {
         const auth = getAuth()
         const regexId = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
@@ -153,7 +175,8 @@ const Signup = ()=> {
             })
             userInfo.map((data)=> {
                 if (newId === data.id) {
-                    setNewId(false)
+                    setSameId(false)
+                    alert('이미 사용중인 아이디입니다')
                     setNewId("")
                 } else if (newId !== data.id) {
                     setSameId(true)
@@ -167,7 +190,7 @@ const Signup = ()=> {
                 <ul className='signup'>
                     <li>
                         <input className={blankId ? 'blank' : 'no_blank'} type='text' name='newId' value={newId} onChange={CreateNewAccount} placeholder='아이디' required/>
-                        <button onClick={duplicateCheck}>{sameId ? '사용 가능한 아이디' : '중복 체크'}</button>
+                        <button onClick={duplicateCheck}>중복 체크</button>
                     </li>
                     <li>
                         <input className={blankName ? 'blank' : 'no_blank'} name='name' type='text' placeholder='이름' value={name} onChange={onChange}/>

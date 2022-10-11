@@ -18,7 +18,7 @@ body {
   padding: 0 5px;
 }
 
-/* // footer */
+/* footer */
 
 #main-footer {
   left: 0px;
@@ -27,6 +27,15 @@ body {
   width: 100%;
   background: #454f51;
   color: white;
+}
+
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.contentWrapper{
+  flex: 1px;
 }
 
 /* main-bg */

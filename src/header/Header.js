@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { authService } from '../fbase'
-import '../scss/Link.css'
+import '../scss/custom.scss'
 
 const Header = ({isLoggedIn})=> {
   const navigate = useNavigate()
@@ -14,6 +14,10 @@ const Header = ({isLoggedIn})=> {
           }
       })
   }
+//   const onClick= () => {
+//     setIsToggled(!isToggled);
+//   }
+
   const onClickFunc = ()=> {
       authService.onAuthStateChanged((user)=> {
           if (user) {
@@ -34,7 +38,7 @@ const Header = ({isLoggedIn})=> {
 		<>
     {/* Navbar */}
     
-    <div id="navbar">
+    <nav id="navbar">
 
         {isLoggedIn ?(
                         <>
@@ -74,7 +78,7 @@ const Header = ({isLoggedIn})=> {
                 </ul> */}
        
         
-        </div>   
+        </nav>   
     
       
         
