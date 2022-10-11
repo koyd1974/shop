@@ -1,16 +1,16 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React, {  useEffect, useState } from 'react';
 import { authService } from './fbase';
-import Header from './header/Header';
+import Header from './layout/Header';
 import Main from './main/Main';
 import Product from './main/Product';
-import Footer from './Footer/Footer';
+import Footer from './layout/Footer';
 import Product2 from './main/Product2';
-import Upload from './Upload/Upload';
+import Upload from './upload/Upload';
 import Comunity from './main/Comunity';
 import Cart from './main/Cart';
-import Login from './Page/Login';
-import Signup from './Page/Signup';
+import Login from './page/Login';
+import Signup from './page/Signup';
 import "./scss/custom.scss"; 
 
 

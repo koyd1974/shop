@@ -60,7 +60,7 @@ const Header = ({isLoggedIn})=> {
                                 <li className="navBar_menus_menu"><NavLink onClick={onClickLogOut} className='text-link'>logout</NavLink></li>
                             </ul>
                             <ul className="bavBar_icons">
-                            <AlignCenterOutlined onClick={onClick}/>
+                            <AlignCenterOutlined />
                             </ul>
                         </>
                     ) : (
@@ -75,7 +75,7 @@ const Header = ({isLoggedIn})=> {
                                 <li className="navBar_menus_menu"><NavLink to="/signup" className='text-link' >회원가입</NavLink></li>
                             </ul>
                             <ul className="bavBar_icons">
-                            <AlignCenterOutlined  onClick={onClick} />
+                            <AlignCenterOutlined  />
                             </ul>
                         </>
                     )

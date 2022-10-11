@@ -6,17 +6,57 @@ body {
   position: relative;
   border-style: rgb(194, 187, 187);
 }
-// #navbar {
-//   position: fixed;
-//   border: 1px solid yellow;
-//   z-index: 20;
-// }
-#navbar ul {
+
+ul {
   display: flex;
 }
 #navbar ul li {
   padding: 0 5px;
 }
+// navBar
+
+.navBar {
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 12px;
+}
+.navBar_toggleBtn {
+  display: none;
+}
+.navBar_menus {
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+  width: 50%;
+}
+.navBar_menus_menu a {
+  color: black;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+  .navBar {
+    justify-content: space-between;
+  }
+  .navBar_menus {
+    display: none;
+  }
+  .navBar_toggleBtn {
+    display: flex;
+  }
+  .navBar_icons .search {
+    display: none;
+  }
+} 
+
+@media screen and (min-width: 767px) {
+  
+  .navBar_icons .search {
+    display: show;
+  }
+} 
 
 /* footer */
 

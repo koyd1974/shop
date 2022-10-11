@@ -31,54 +31,35 @@ const Product2 = ({userObj}) => {
         }) // 클릭시 업로드 했던 정보를 가져옴.
     }
 
-    const printTag = (data, index) => {
-
-
-        
-
-        var a = (index % 4 === 1) ? <Row> : <Row>
-            
-        
-        a+=<Col>
-        a+=<Card hoverable style={{width: 260,}} cover={<img alt="example" src={data.fileUrl}/> }>
-   
-        a+= <Meta title="Europe Street beat" description={data.text.name} />
-        a+=<Meta description={data.text.seller} />
-        a+=<Meta description={data.text.description} />
-        a+=<Meta description={data.text.price} />
-        a+=<Button block onClick={onClick.bind(null, data)}>장바구니추가하기</Button>
- 
-        a+=</Card>
-        a+=</Col>
-        a+=</Row>
-
-        //document.getElementById('printData').innerHTML = a;
-        
-        return a
-        
-    }
-
-
-
     return (
         <div>
             <div>
                 <p>상품보기 페이지</p>
+                <Row>
                     {goodsArray.sort((a,b)=> a.createdAt - b.createdAt).map((data,index)=> (
+                                 <div key={index}>         
+                        <Col>
+                            <Card
+                            hoverable
+                            style={{
+                            width: 260
+                            }}
+                            cover={<img alt="example" src={data.fileUrl} />}
+                                >
+                            <Meta title="Europe Street beat" description={data.text.name} />
+                            <Meta title="Europe Street beat" description={data.text.name} />
+                                <Meta description={data.text.seller} />
+                                <Meta description={data.text.description} />
+                                <Meta description={data.text.price} />
+                                <Button block onClick={onClick.bind(null, data)}>장바구니추가하기</Button>
+                                     
+                         </Card>
+                         </Col>                       
+                     </div>             
+                    ))}  
+                    </Row> 
 
-                        printTag(data, index)
-
-                        
-                    
-                       
-                    ))}
-                    {/* <div id="printData">
-
-                    </div> */}
             </div>
-   
-            
-  
         </div>
     );    
 }
