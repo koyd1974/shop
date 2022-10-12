@@ -4,9 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { dbService } from '../fbase';
 import '../scss/Link.css'
+import {Button,Form,Input,Checkbox} from 'antd';
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
   
 
 const Signup = ()=> {
+    const onFinish = (values) => {
+        console.log('Received values of form: ', values);
+      };
     const [newId, setNewId] = useState("")
     const [name, setName] = useState("")
     const [blankId, setBlankId] = useState(false)
@@ -186,7 +191,7 @@ const Signup = ()=> {
     }
     return (
         <div>
-            <form className='sinup-container' onSubmit={onSubmit}>
+            {/* <form className='sinup-container' onSubmit={onSubmit}>
                 <ul className='signup'>
                     <li>
                         <input className={blankId ? 'blank' : 'no_blank'} type='text' name='newId' value={newId} onChange={CreateNewAccount} placeholder='아이디' required/>
@@ -209,7 +214,90 @@ const Signup = ()=> {
             </form>
             <div id='usered'>
                 <p id='usered'>이미 회원이면? <Link to='/login' className='text-link'>로그인</Link></p>
-            </div>
+            </div> */}
+             <Form
+      name="normal_login"
+      className="login-form"
+      initialValues={{
+        remember: true,
+      }}
+      onFinish={onFinish}
+    >
+      <Form.Item
+        name="E-mail"
+        // label="E-mail"
+        rules={[
+          {
+            required: true,
+            message: '이메일을 입력해주세요',
+          },
+        ]}
+      >
+        <Input prefix={<UserOutlined className="site-form-item-icon" />} className={blankId ? 'blank' : 'no_blank'} placeholder="E-Mail" name='newId' value={newId} onChange={CreateNewAccount} required/>
+        <Button type="link" onClick={duplicateCheck}>중복확인하기</Button>
+      </Form.Item>
+      <Form.Item
+        name="Name"
+        // label="성 함"
+        rules={[
+          {
+            required: true,
+            message: '이름을 입력해주세요',
+          },
+        ]}
+      >
+        <Input placeholder="성 함" className={blankName ? 'blank' : 'no_blank'} name='name'  value={name} onChange={onChange}/>
+      </Form.Item>
+      <Form.Item
+       name="password"
+        // label="비밀번호"
+        rules={[
+          {
+            required: true,
+            message: '비밀번호를 확인해 주세요.',
+          },
+        ]}
+        hasFeedback
+      >
+        <Input.Password placeholder="Password" className={blankPw ? 'blank' : 'no_blank'} name='newPassword' value={newPassword} onChange={CreateNewAccount}  required />
+        
+      </Form.Item>
+      <Form.Item
+        name="confirm"
+        // label="비밀번호 확인"
+        dependencies={['password']}
+        hasFeedback
+        rules={[
+          {
+            required: true,
+            message: '비밀번호를 확인해 주세요.',
+          },
+          ({ getFieldValue }) => ({
+            validator(_, value) {
+              if (!value || getFieldValue('password') === value) {
+                return Promise.resolve();
+              }
+
+              return Promise.reject(new Error('Password를 확인해 주세요.'));
+            },
+          }),
+        ]}  
+      >
+        <Input.Password placeholder="Confirm Password" className={blankPw2 ? 'blank' : 'no_blank'} type='password' name='pwd2' onChange={onChange} value={checkPassword}/>
+      </Form.Item>
+    
+
+      <Form.Item>
+        <Button type="primary" htmlType="submit" className="login-form-button"  onClick={onClick} name='click'>
+          회원가입완료
+        </Button>
+        <div id='usered'>
+        <p id='usered'>이미 회원이면? <Link to='/login' className='text-link'>Login</Link></p>
+        </div>
+      </Form.Item>
+    </Form>
+
+
         </div>
     );
 }

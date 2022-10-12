@@ -1,11 +1,21 @@
-import React, { useState } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { dbService } from '../fbase';
-// import '../css/Link.css'
+import '../scss/Link.css'
 
-const WriteButton = ({ writeObj, isOwner })=> {
+const WriteButton = ({ writeObj, isOwner, userObj })=> {
     const [editing, setEditing] = useState(false)
     const [newWrite, setNewWrite] = useState(writeObj.text)
-   
+    const [isUser, setIsUser] = useState(false)
+    const date = new Date()
+    // console.log(userObj)
+    useEffect(()=> {
+        if (writeObj.creatorId === userObj.email) {
+            setIsUser(true)
+        } else {
+            setIsUser(false)
+        }
+    }, [])
+
     const onDeleteClick = async()=> {
         const ok = window.confirm(`정말로 삭제하시겠습니까?`)
         if (ok) {
@@ -13,13 +23,12 @@ const WriteButton = ({ writeObj, isOwner })=> {
         }
     }
     const toggleEditing = () => {
-        setEditing((prev) => !prev); 
+        setEditing((prev) => !prev);
     }
     const onSubmit = (event)=> {
         event.preventDefault();
     }
-    //수정을 클릭햇을 시 원래 입력햇던 값과 입력이 다를경우 다른 입력값을 업로드 함.
-    const onClick = async () => {  
+    const onClick = async () => {
         if (newWrite !== writeObj.text) {
           await dbService.doc(`user/${writeObj.id}`).update({
             text: newWrite,
@@ -27,7 +36,6 @@ const WriteButton = ({ writeObj, isOwner })=> {
         }
         setEditing(false);
     };
-    //수정 시 바뀌는 입력값 저장
     const onChange = (event) => {
         const {
           target: { value },
@@ -37,21 +45,31 @@ const WriteButton = ({ writeObj, isOwner })=> {
     return (
         <div>
             {
-                editing ? ( 
-                    <>
+                editing ? (
+                    <div className={isUser ? 'isUser' : 'notUser'}>
                         <form onSubmit={onSubmit}>
                             <input type="text" placeholder="수정하세요" value={newWrite} required onChange={onChange} />
                             <button onClick={onClick}>게시</button>
                         </form>
                         <button onClick={toggleEditing}>Cancel</button>
-                    </>
+                    </div>
                 ) : (
-                    <div>
-                        <h4>{writeObj.text}</h4>                       
-                        {isOwner && ( // 글쓴이 주인이면 수정,삭제 가능 기능.
+                    <div className={isUser ? 'isUser' : 'notUser'}>
+                       {isUser ? (
+                            <div className='Chat2'>
+                                <span>{writeObj.newTime} {writeObj.time}</span>
+                                <div className='chatUser'><h3>{writeObj.text}</h3></div>
+                            </div> 
+                       ) : (
+                            <div className='Chat2'>
+                                <h3 className='chatUser'>{writeObj.text}</h3>
+                                <span>{writeObj.newTime} {writeObj.time}</span>
+                            </div>
+                       )}
+                        {isOwner && (
                             <div>
-                                <button onClick={onDeleteClick}>Delete Nweet</button>
-                                <button onClick={toggleEditing}>Edit Nweet</button>
+                                <button onClick={toggleEditing}>수정</button>
+                                <button onClick={onDeleteClick}>삭제</button>
                             </div>
                         )}
                     </div>

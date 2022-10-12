@@ -35,9 +35,10 @@ const Product2 = ({userObj}) => {
         <div>
             <div>
                 <p>상품보기 페이지</p>
-                <Row>
+                
                     {goodsArray.sort((a,b)=> a.createdAt - b.createdAt).map((data,index)=> (
-                                 <div key={index}>         
+                                 <div key={index}>   
+                    <Row>  
                         <Col>
                             <Card
                             hoverable
@@ -54,10 +55,11 @@ const Product2 = ({userObj}) => {
                                 <Button block onClick={onClick.bind(null, data)}>장바구니추가하기</Button>
                                      
                          </Card>
-                         </Col>                       
+                         </Col>     
+                         </Row>                      
                      </div>             
                     ))}  
-                    </Row> 
+                
 
             </div>
         </div>

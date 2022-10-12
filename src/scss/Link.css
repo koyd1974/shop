@@ -1,13 +1,9 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+
 li {
     list-style-type: none;
 }
 .nav {
-    width: 375px;
+    width: 100%;
 }
 .text-link {
     font-size: 0.8rem;
@@ -26,7 +22,7 @@ li {
 
 }
 
-/* NABVAR */
+
 
 
 
@@ -78,11 +74,9 @@ input {
 }
 .chatUser {
     width: 50px;
-    border: 1px solid #ff0000;
+   
 }
-.blank {
-    border-color: red;
-}
+
 .no_blank {
     border-color: black;
 }
@@ -116,7 +110,7 @@ input {
     /* 태블릿 CSS */
     .inner {
       width: 100%;
-      border: 1px solid #ff0000;
+    
     }
     .nav {
         width: 100%;
